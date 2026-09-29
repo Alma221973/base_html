@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
     <head>
@@ -5,7 +6,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+
     <body>
+
         <header>
             <nav>
                 <ul>
@@ -13,13 +16,91 @@
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
+            </nav>
             <h1> Welcome to my website</h1>
         </header>
+        
         <main>
             <p> This is a simple paragraph</p>
+
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="nombre">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+
+                <select name="gender" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <optgroup label="Fruits">
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                        <option value="orange">Orange</option>
+                    </optgroup>
+                </select>
+
+                <input type="checkbox" id="subscribe" name="subscribe">
+                <label for="subscribe">Subscribe to newsletter</label>
+
+                <label for="option1">Option 1</label>
+                <input type="radio" id="option2" name="options" value="option2">
+                <label for="option2">Option 2</label>  
+                
+                <textarea id="message" name="message" rows="4" cols="50"></textarea>
+
+                <input type="number" id="number" name="number" min="1" max="10">
+
+                <input type="date" id="date" name="date">
+                <input type="file" id="file" name="file">
+                <input type="range" id="range" name="range" min="0" max="100">
+                <input type="color" id="color" name="color">
+
+                <input type="tel" id="tel" name="tel">
+                <input type="time" id="time" name="time">
+                <input type="search" id="website" name="website">
+
+                <label for="username">Datos de salida:</label>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                            <th>Header 4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data 1</td>
+                            <td>Data 2</td>
+                            <td>Data 3</td>
+                            <td>Data 4</td>
+                        </tr>
+                        <tr>
+                            <td>Data 4</td>
+                            <td>Data 5</td>
+                            <td>Data 6</td>
+                            <td>Data 7</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="submit">Submit</button>
+
+            </form>
+
         </main>
+
         <footer>
             <p>&copy; 2023 My Website. All rights reserved</p>
         </footer>
+
     </body>
+
 </html>
