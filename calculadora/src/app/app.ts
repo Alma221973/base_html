@@ -1,20 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { Calculadora } from './calculadora/calculadora';
+import { Component } from '@angular/core';
+import { CalculadoraComponent } from './calculadora/calculadora';
 
 @Component({
-  imports: [Calculadora],
   selector: 'app-root',
+  standalone: true,
+  imports: [CalculadoraComponent],
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
-export class App {
-  protected readonly contador = signal(0);
-
-  incrementar(): void {
-    this.contador.update(valor => valor + 1);
-  }
-
-  reiniciar(): void {
-    this.contador.set(0);
-  }
-}
+export class App {}

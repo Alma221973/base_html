@@ -1,24 +1,25 @@
-<section class="calculadora" aria-labelledby="titulo-calculadora">
-  <h2 id="titulo-calculadora">Calculadora</h2>
-  <output class="pantalla" aria-label="Resultado" aria-live="polite">{{ pantalla() }}</output>
-  <p class="mensaje" role="status">{{ mensaje() }}</p>
-  <div class="teclado">
-    <button type="button" class="borrar" (click)="borrar()" title="Borrar todo">C</button>
-    <button type="button" class="operador" (click)="elegirOperacion('/')" [class.activo]="operacion() === '/'" [attr.aria-pressed]="operacion() === '/'" aria-label="Dividir">&divide;</button>
-    <button type="button" (click)="escribir('7')">7</button>
-    <button type="button" (click)="escribir('8')">8</button>
-    <button type="button" (click)="escribir('9')">9</button>
-    <button type="button" class="operador" (click)="elegirOperacion('*')" [class.activo]="operacion() === '*'" [attr.aria-pressed]="operacion() === '*'" aria-label="Multiplicar">&times;</button>
-    <button type="button" (click)="escribir('4')">4</button>
-    <button type="button" (click)="escribir('5')">5</button>
-    <button type="button" (click)="escribir('6')">6</button>
-    <button type="button" class="operador" (click)="elegirOperacion('-')" [class.activo]="operacion() === '-'" [attr.aria-pressed]="operacion() === '-'" aria-label="Restar">&minus;</button>
-    <button type="button" (click)="escribir('1')">1</button>
-    <button type="button" (click)="escribir('2')">2</button>
-    <button type="button" (click)="escribir('3')">3</button>
-    <button type="button" class="operador" (click)="elegirOperacion('+')" [class.activo]="operacion() === '+'" [attr.aria-pressed]="operacion() === '+'" aria-label="Sumar">+</button>
-    <button type="button" class="cero" (click)="escribir('0')">0</button>
-    <button type="button" (click)="escribir('.')" aria-label="Punto decimal">.</button>
-    <button type="button" class="igual" (click)="calcular()" aria-label="Calcular resultado">=</button>
+<div class="calculadora-tarjeta">
+  <h2>Calculadora Básica</h2>
+  
+  <div class="grupo-input">
+    <label for="input-a">Número A:</label>
+    <input id="input-a" type="number" [(ngModel)]="a" placeholder="Ingrese el primer número">
   </div>
-</section>
+
+  <div class="grupo-input">
+    <label for="input-b">Número B:</label>
+    <input id="input-b" type="number" [(ngModel)]="b" placeholder="Ingrese el segundo número">
+  </div>
+
+  <div class="botones-grid">
+    <button type="button" class="btn-op" (click)="calcular('+')">+</button>
+    <button type="button" class="btn-op" (click)="calcular('-')">-</button>
+    <button type="button" class="btn-op" (click)="calcular('*')">×</button>
+    <button type="button" class="btn-op" (click)="calcular('/')">÷</button>
+  </div>
+
+  <div class="resultado-seccion">
+    <span>Resultado:</span>
+    <strong class="valor-resultado">{{ resultado() }}</strong>
+  </div>
+</div>

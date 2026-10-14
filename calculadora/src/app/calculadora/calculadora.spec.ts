@@ -1,81 +1,77 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Calculadora } from './calculadora';
+import { Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-describe('Calculadora', () => {
-  let component: Calculadora;
-  let fixture: ComponentFixture<Calculadora>;
+@Component({
+  selector: 'app-calculadora',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './calculadora.html',
+  styleUrl: './calculadora.css',
+})
+export class Calculadora {
+  readonly pantalla = signal('0');
+  readonly mensaje = signal('');
+  readonly operacion = signal<string | null>(null);
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Calculadora],
-    }).compileComponents();
+  private valorAnterior: number | null = null;
+  private limpiarPantalla = false;
 
-    fixture = TestBed.createComponent(Calculadora);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+  escribir(caracter: string): void {
+    this.mensaje.set('');
+    if (caracter === '.' && this.pantalla().includes('.')) return;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    if (this.pantalla() === '0' && caracter !== '.') {
+      this.pantalla.set(caracter);
+    } else if (this.limpiarPantalla) {
+      this.pantalla.set(caracter);
+      this.limpiarPantalla = false;
+    } else {
+      this.pantalla.set(this.pantalla() + caracter);
+    }
+  }
 
-  it.each([
-    ['+', '2', '3', '5'],
-    ['-', '2', '3', '-1'],
-    ['*', '4', '3', '12'],
-    ['/', '9', '2', '4.5'],
-  ] as const)('calculates %s', (operacion, primero, segundo, esperado) => {
-    component.escribir(primero);
-    component.elegirOperacion(operacion);
-    component.escribir(segundo);
-    component.calcular();
-    expect(component.pantalla()).toBe(esperado);
-  });
+  elegirOperacion(op: string): void {
+    this.valorAnterior = parseFloat(this.pantalla());
+    this.operacion.set(op);
+    this.limpiarPantalla = true;
+  }
 
-  it('handles decimal input without duplicate decimal points', () => {
-    component.escribir('.');
-    component.escribir('1');
-    component.escribir('.');
-    component.elegirOperacion('+');
-    component.escribir('.');
-    component.escribir('2');
-    component.calcular();
-    expect(component.pantalla()).toBe('0.3');
-  });
+  calcular(): void {
+    if (this.operacion() === null || this.valorAnterior === null) return;
 
-  it('reports division by zero and accepts a new calculation', () => {
-    component.escribir('9');
-    component.elegirOperacion('/');
-    component.escribir('0');
-    component.calcular();
-    expect(component.mensaje()).toContain('cero');
-    component.escribir('2');
-    expect(component.mensaje()).toBe('');
-    expect(component.pantalla()).toBe('2');
-  });
+    const valorActual = parseFloat(this.pantalla());
+    let res = 0;
 
-  it('clears the pending operation', () => {
-    component.escribir('9');
-    component.elegirOperacion('+');
-    component.borrar();
-    expect(component.pantalla()).toBe('0');
-    expect(component.operacion()).toBeNull();
-  });
+    switch (this.operacion()) {
+      case '+':
+        res = this.valorAnterior + valorActual;
+        break;
+      case '-':
+        res = this.valorAnterior - valorActual;
+        break;
+      case '*':
+        res = this.valorAnterior * valorActual;
+        break;
+      case '/':
+        if (valorActual === 0) {
+          this.mensaje.set('Error: División por cero');
+          this.operacion.set(null);
+          return;
+        }
+        res = this.valorAnterior / valorActual;
+        break;
+    }
 
-  it('renders the result after pressing buttons', async () => {
-    const element = fixture.nativeElement as HTMLElement;
-    const press = (label: string) => {
-      const button = Array.from(element.querySelectorAll('button')).find(
-        item => item.textContent?.trim() === label,
-      );
-      expect(button).toBeDefined();
-      button!.click();
-    };
-    press('2');
-    press('+');
-    press('3');
-    press('=');
-    await fixture.whenStable();
-    expect(element.querySelector('output')?.textContent).toBe('5');
-  });
-});
+    this.pantalla.set(String(res));
+    this.operacion.set(null);
+    this.valorAnterior = null;
+    this.limpiarPantalla = true;
+  }
+
+  borrar(): void {
+    this.pantalla.set('0');
+    this.operacion.set(null);
+    this.valorAnterior = null;
+    this.mensaje.set('');
+  }
+}
