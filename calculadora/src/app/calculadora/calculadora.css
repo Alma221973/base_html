@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  margin-top: 32px;
+}
+
+.calculadora {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 340px;
+  padding: 20px;
+  border: 1px solid #cbd5d1;
+  border-radius: 8px;
+  background: #fff;
+}
+
+h2 { margin: 0 0 16px; font-size: 22px; }
+
+.pantalla {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px 12px;
+  border-radius: 4px;
+  background: #edf3ef;
+  color: #16392d;
+  text-align: right;
+  font: 24px/1.5 monospace;
+  overflow-wrap: anywhere;
+  min-height: 104px;
+}
+
+.mensaje { min-height: 40px; margin: 8px 0; font-size: 14px; color: #a32929; }
+.teclado { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+button {
+  height: 52px;
+  border: 1px solid #d2d8d5;
+  border-radius: 4px;
+  background: #f6f7f6;
+  color: #202722;
+  font: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+button:hover { background: #e5ece7; }
+button:focus-visible { outline: 3px solid #176c51; outline-offset: 2px; }
+.borrar { grid-column: span 3; background: #fce8e8; color: #962b2b; }
+.cero { grid-column: span 2; }
+.operador { background: #e2eee8; color: #174e3c; }
+.operador.activo, .igual { background: #176c51; color: #fff; }
+.igual:hover { background: #10513d; }
