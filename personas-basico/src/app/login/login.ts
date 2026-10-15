@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -6,7 +5,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-login',
   imports: [FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
 export class Login {
   usuario = '';
