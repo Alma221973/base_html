@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,6 +11,8 @@ import { Component } from '@angular/core';
 export class Login {}
 =======
 
+=======
+>>>>>>> b25c50d259cfec1aec7df0b0c8ef6f2a41fda86b
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -17,7 +20,11 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-login',
   imports: [FormsModule],
   templateUrl: './login.html',
+<<<<<<< HEAD
   styleUrl: './login.css'
+=======
+  styleUrl: './login.css',
+>>>>>>> b25c50d259cfec1aec7df0b0c8ef6f2a41fda86b
 })
 export class Login {
   usuario = '';
@@ -41,4 +48,7 @@ export class Login {
     this.clave = '';
   }
 }
+<<<<<<< HEAD
 >>>>>>> c651d7bfa34c8b921a8df99d4dfc4375e697e0f8
+=======
+>>>>>>> b25c50d259cfec1aec7df0b0c8ef6f2a41fda86b

@@ -1,12 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <p>login works!</p>
 =======
 
+=======
+>>>>>>> b25c50d259cfec1aec7df0b0c8ef6f2a41fda86b
 <main>
   <h1>Iniciar sesión</h1>
 
   @if (!sesionIniciada) {
     <form (ngSubmit)="iniciarSesion()">
+<<<<<<< HEAD
 
       <label for="usuario">Usuario</label>
       <input id="usuario" name="usuario"
@@ -18,13 +22,28 @@
 
       <button type="submit">Ingresar</button>
 
+=======
+      <label for="usuario">Usuario</label>
+      <input id="usuario" name="usuario" [(ngModel)]="usuario" required>
+
+      <label for="clave">Contraseña</label>
+      <input id="clave" name="clave" type="password" [(ngModel)]="clave" required>
+
+      <button type="submit">Ingresar</button>
+>>>>>>> b25c50d259cfec1aec7df0b0c8ef6f2a41fda86b
     </form>
   } @else {
     <p>Sesión iniciada correctamente</p>
 
+<<<<<<< HEAD
     <button type="button" (click)="cerrarSesion()">
       Cerrar sesión
     </button>
   }
 </main>
 >>>>>>> c651d7bfa34c8b921a8df99d4dfc4375e697e0f8
+=======
+    <button type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+  }
+</main>
+>>>>>>> b25c50d259cfec1aec7df0b0c8ef6f2a41fda86b
